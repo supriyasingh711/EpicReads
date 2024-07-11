@@ -51,7 +51,7 @@ const [SmallScreenNav,setSmallScreenNav]=useState("hidden")
                     <Link className='px-2 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/log-in"}>Log In</Link>
                     <Link className='px-2 py-1 bg-blue-300 text-zinc-800 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/sign-up"}>Sign Up</Link>
                 </div>
-               <button className='text-white text-2xl hover:text-zinc-400 ' 
+               <button className=' block md:hidden text-white text-2xl hover:text-zinc-400 ' 
                onClick={()=>{
                 SmallScreenNav==="hidden"?setSmallScreenNav("block"):setSmallScreenNav("hidden");
                 }}>

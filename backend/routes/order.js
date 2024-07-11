@@ -1,21 +1,26 @@
 const router=require("express").Router()
-const authenticateToken=require("./userAuth")
+const {authenticateToken}=require("./userAuth")
 const Book=require("../models/book")
 const User=require("../models/user")
 const Order=require("../models/order")
 
 
+
+
+
+
 //add book to order
-router.put("/place-order",authenticateToken,async(req,res)=>{
+router.post("/place-order",authenticateToken,async(req,res)=>{
     try {
         const {id}=req.headers;
         const {order}=req.body
+
         for(const orderdata of order){
             const newOrder=new Order({user:id,book:orderdata._id})
             const orderDataFromDb=await newOrder.save();
             await User.findByIdAndUpdate(id,{
                 $push:{orders:orderDataFromDb._id}
-            })
+            }) 
             await User.findByIdAndUpdate(id,{
                 $pull:{cart:orderdata._id}
             })
@@ -30,7 +35,7 @@ router.put("/place-order",authenticateToken,async(req,res)=>{
     
 })
 //get order history
-router.get("get-order-history",authenticateToken,async(req,res)=>{
+router.get("/get-order-history",authenticateToken,async(req,res)=>{
     try {
        const {id}=req.headers;
        const userData=await User.findById(id).populate({
