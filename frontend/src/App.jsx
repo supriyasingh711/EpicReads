@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home'
 import Footer from './components/Footer/Footer'
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom" 
+import {Routes,Route} from "react-router-dom" 
 import Books from './pages/Books'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
@@ -14,8 +14,7 @@ const App = () => {
   
   return (
     <div>
-      <Router>
-      <Navbar/>
+            <Navbar/>
 
         <Routes>
   
@@ -32,7 +31,7 @@ const App = () => {
 
         </Routes>
       <Footer/>
-      </Router>
+ 
      
 
 

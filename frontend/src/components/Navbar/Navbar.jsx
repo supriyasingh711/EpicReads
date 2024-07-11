@@ -2,20 +2,23 @@ import React, { useState } from 'react'
 import logo from "../../assets/open-book.png"
 import { Link } from 'react-router-dom'
 import {FaGripLines} from "react-icons/fa"
+import { useSelector } from 'react-redux'
 const Navbar = () => {
     const links=[
         {
             title:"Home",
             link:"/"
         },
+        
+        {
+            title:"Books",
+            link:"/books"
+        },
         {
             title:"About Us",
             link:"/about-us"
         },
         {
-            title:"Books",
-            link:"/books"
-        },{
             title:"Cart",
             link:"/cart"
         },
@@ -24,7 +27,10 @@ const Navbar = () => {
             link:"/profile"
         }
     ]
-
+    const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
+    if(isLoggedIn===false){
+        links.splice(2,3)
+    }
 const [SmallScreenNav,setSmallScreenNav]=useState("hidden")
 
   return (
