@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home'
 import Footer from './components/Footer/Footer'
@@ -10,8 +10,24 @@ import Signup from './pages/Signup'
 import Profile from './pages/Profile'
 import AboutUs from './pages/AboutUs'
 import ViewBookDetails from './components/ViewBook/ViewBookDetails'
+import { useDispatch, useSelector } from 'react-redux'
+import { authActions } from './store/auth'
+
+
 const App = () => {
+  //to get the state even after refreshing
+  const dispatch=useDispatch()
+  const role=useSelector((state)=>state.auth.role)
+  useEffect(()=>{
+    if(localStorage.getItem("id")&&
+        localStorage.getItem("token")&&
+        localStorage.getItem("role")
   
+  ){
+    dispatch(authActions.login());
+    dispatch(authActions.changeRole(localStorage.getItem("role")));
+  }
+  },[]);
   return (
     <div>
             <Navbar/>

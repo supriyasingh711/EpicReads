@@ -3,6 +3,7 @@ import logo from "../../assets/open-book.png"
 import { Link } from 'react-router-dom'
 import {FaGripLines} from "react-icons/fa"
 import { useSelector } from 'react-redux'
+import { isAllOf } from '@reduxjs/toolkit'
 const Navbar = () => {
     const links=[
         {
@@ -54,8 +55,15 @@ const [SmallScreenNav,setSmallScreenNav]=useState("hidden")
                 )}
                 </div>
                 <div className='hidden md:flex gap-4 '>
-                    <Link className='px-2 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/log-in"}>Log In</Link>
-                    <Link className='px-2 py-1 bg-blue-300 text-zinc-800 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/sign-up"}>Sign Up</Link>
+                    {isLoggedIn===false && 
+                    (
+                        <>
+                        <Link className='px-2 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/log-in"}>Log In</Link>
+                        <Link className='px-2 py-1 bg-blue-300 text-zinc-800 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/sign-up"}>Sign Up</Link>
+                        </>
+                    )
+                    
+                    }
                 </div>
                <button className=' block md:hidden text-white text-2xl hover:text-zinc-400 ' 
                onClick={()=>{
@@ -81,8 +89,12 @@ const [SmallScreenNav,setSmallScreenNav]=useState("hidden")
                 </Link>
                 )}
             
-                    <Link className='px-4 py-1 mb-8 text-2xl border border-blue-500 text-white rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/log-in"}>Log In</Link>
-                    <Link className='px-2 py-1 mb-8 text-2xl bg-blue-300 text-zinc-800 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/sign-up"}>Sign Up</Link>
+                   {isLoggedIn===false && (
+                    <>
+                     <Link className='px-4 py-1 mb-8 text-2xl border border-blue-500 text-white rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/log-in"}>Log In</Link>
+                     <Link className='px-2 py-1 mb-8 text-2xl bg-blue-300 text-zinc-800 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300' to={"/sign-up"}>Sign Up</Link>
+                    </>
+                   )}
                 </div>
     </>
    
