@@ -15,7 +15,7 @@ router.put("/add-to-cart",authenticateToken,async(req,res)=>{
                 message:"book is already in cart"
             })
         }
-        await User.findByIdAndUpdate(id,{$push:{card:bookid}})
+        await User.findByIdAndUpdate(id,{$push:{cart:bookid}})
         return res.json({
             status:"Success",
             message:"Book added to cart"

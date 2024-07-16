@@ -3,12 +3,23 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../Loader/Loader'; // Assuming you have a Loader component
+import { FaHeart } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
+import { FaEdit } from 'react-icons/fa';
+import {MdOutlineDelete} from "react-icons/md"
+import { useSelector } from 'react-redux';
+
 
 const ViewBookDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
+  const role=useSelector((state)=>state.auth.role)
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,13 +50,43 @@ const ViewBookDetails = () => {
   if (!data) {
     return <div>No data available</div>;
   }
-
+  const headers={
+    id:localStorage.getItem("id"),
+    authorization:`Bearer ${localStorage.getItem("token")}`,
+    bookid:id
+  };
+const setFavourite=async()=>{
+  const response=await axios.put("http://localhost:1000/api/v1/add-to-favourite",
+    {},
+    {headers})
+   alert(response.data.message)
+}
+const setCart=async()=>{
+  const response=await axios.put("http://localhost:1000/api/v1/add-to-cart",
+    {},
+    {headers})
+   alert(response.data.message)
+}
   return (
     <>
     <div className='px-12 py-8 bg-zinc-900 flex flex-col md:flex-row gap-8'>
-      <div className='bg-zinc-800 rounded p-4  md:h-[88vh] md:w-3/6 flex flex-col md:flex-row items-center justify-center'>
-        <img src={data.url} className='md:h-[50vh]' alt="" />
+      <div className='flex flex-col lg:flex-row rounded p-4  md:h-[70vh] md:w-3/6 flex flex-col md:flex-row items-center justify-between gap-8'>
+        <img src={data.url} className='md:h-[50vh] object-cover' alt="" />
       </div>
+{isLoggedIn===true && role==="user" && <>
+  <div className='flex md:flex-col gap-5 items-center justify-center'>
+          <button className='bg-white rounded-full text-2xl p-2 mb-5' onClick={setFavourite}><FaHeart/></button>
+          <button className='bg-white rounded-full text-2xl p-2 mb-5' onClick={setCart}><FaShoppingCart/></button>
+        </div>
+</>}
+{isLoggedIn===true && role==="admin" && <>
+  <div className='flex md:flex-col gap-5 items-center justify-center'>
+          <button className='bg-white rounded-full text-2xl p-2 mb-5'><FaEdit/></button>
+          <button className='bg-white rounded-full text-2xl p-2 mb-5'><MdOutlineDelete/></button>
+          
+        </div>
+</>}
+        
       <div className='p-4 md:w-3/6'>
         <h1 className='text-4xl text-zinc-300 font-semibold'>{data.title}</h1>
         <p className='text-zinc-400 mt-1'>By {data.author}</p>
