@@ -23,7 +23,7 @@ router.post("/place-order",authenticateToken,async(req,res)=>{
             }) 
             await User.findByIdAndUpdate(id,{
                 $pull:{cart:orderdata._id}
-            })
+            }) 
         }
         return res.json({
             status:"Success",

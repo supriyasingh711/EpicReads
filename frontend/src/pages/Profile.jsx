@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import Loader from '../components/Loader/Loader'
+import MobileNav from '../components/Profile/MobileNav'
 
 const Profile = () => {
   // const isLoggedIn=useSelector();
@@ -30,7 +31,11 @@ const Profile = () => {
   <Loader/>
   </div>}
 {Profile && <>
-  <div className=' w-full md:w-2/6 h-screen'><Sidebar data={Profile}/></div>
+  <div className=' w-full md:w-2/6 h-auto mb-5 lg:h-screen'>
+  
+  <Sidebar className="md:hidden" data={Profile}/>
+  <MobileNav/>
+  </div>
   <div className='w-full md:w-4/6'><Outlet/></div>
 </>}
 

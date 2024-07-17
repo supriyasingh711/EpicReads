@@ -15,7 +15,10 @@ const Favourites = () => {
       fetch()
   },[FavouriteBooks])
   return (
-    <div className='grid grid-cols-4 gap-4'>{
+    <>
+    <div className='grid grid-cols-4 gap-4'>
+      
+      {
       FavouriteBooks && FavouriteBooks.map((items,i)=>(
 
       
@@ -27,6 +30,11 @@ const Favourites = () => {
         </>
       ))
       }</div>
+      {FavouriteBooks&& FavouriteBooks.length===0 &&(
+        <div>No favourite books</div>
+      )}
+    </>
+    
   )
 }
 
