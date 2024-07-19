@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../Loader/Loader'; // Assuming you have a Loader component
 import { FaHeart } from 'react-icons/fa';
@@ -18,8 +18,7 @@ const ViewBookDetails = () => {
 
   const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
   const role=useSelector((state)=>state.auth.role)
-
-
+  const navigate=useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,6 +66,14 @@ const setCart=async()=>{
     {headers})
    alert(response.data.message)
 }
+const deletebook=async()=>{
+  const res=await axios.delete("http://localhost:1000/api/v1/delete-book",{headers})
+  alert(res.data.message)
+  navigate("/books")
+}
+
+
+
   return (
     <>
     <div className='px-12 py-8 bg-zinc-900 flex flex-col md:flex-row gap-8'>
@@ -81,8 +88,15 @@ const setCart=async()=>{
 </>}
 {isLoggedIn===true && role==="admin" && <>
   <div className='flex md:flex-col gap-5 items-center justify-center'>
-          <button className='bg-white rounded-full text-2xl p-2 mb-5'><FaEdit/></button>
-          <button className='bg-white rounded-full text-2xl p-2 mb-5'><MdOutlineDelete/></button>
+    <Link 
+    to={`/update-book/${id}`}
+    className='bg-white rounded lg:rounded-full text-4xl lg:text-3xl p-1 '
+    >
+      <FaEdit/>{" "}
+      <span className='ms-4 block lg:hidden'>Edit</span>
+    
+    </Link>
+          <button className='bg-white rounded-full text-2xl p-2 mb-5' onClick={deletebook}><MdOutlineDelete/></button>
           
         </div>
 </>}

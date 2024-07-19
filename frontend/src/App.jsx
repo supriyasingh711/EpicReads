@@ -15,6 +15,9 @@ import { authActions } from './store/auth'
 import Favourites from './components/Profile/Favourites'
 import UserOrderHistory from './components/Profile/UserOrderHistory'
 import Settings from './components/Profile/Settings'
+import AllOrders from './pages/AllOrders'
+import AddBook from './pages/AddBook'
+import UpdateBook from './pages/UpdateBook'
 
 
 const App = () => {
@@ -40,9 +43,21 @@ const App = () => {
           <Route exact path='/' element={<Home/>} />
           <Route exact path='/books' element={<Books/>} />
           <Route exact path='/log-in' element={<Login/>} />
+          <Route exact path='/update-book/:id' element={<UpdateBook/>} />
+
           <Route exact path='/sign-up' element={<Signup/>} />
           <Route exact path='/cart' element={<Cart/>} />
           <Route exact path='/profile' element={<Profile/>} >
+          {role==="user" ? (
+            <Route index element={<Favourites/>} />
+          ):(
+            <Route path='/profile/all-orders' element={<AllOrders/>} />
+          )}
+          {role==="admin" && (
+            <Route path='/profile/add-book' element={<AddBook/>} />
+
+          )}
+          
           <Route index element={<Favourites/>}/>
           <Route path='/profile/orderHistory' element={<UserOrderHistory/>}/>
           <Route path='/profile/settings' element={<Settings/>}/>
