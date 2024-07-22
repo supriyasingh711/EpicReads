@@ -46,8 +46,6 @@ const setOptionsButton=(i)=>{
       setOptions(i);
 }
 
-
-
   return (
 <>
       {!AllOrders && (
@@ -62,19 +60,19 @@ const setOptionsButton=(i)=>{
           <div className='w-[3%]'>
             <h1 className='text-center'>Sr.</h1>
             </div>
-            <div className='w-[22%]'>
+            <div className='w-[40%] md:w-[22%]'>
             <h1 className='text-center'>Books</h1>
             </div>
-            <div className='w-[45%]'>
+            <div className='w-[45%] hidden md:block'>
             <h1 className='text-center'>Description</h1>
             </div>
             <div className='w-[9%]'>
             <h1 className='text-center'>Price</h1>
             </div>
-            <div className='w-[16%]'>
+            <div className='w-[25%] md:w-[16%]'>
             <h1 className='text-center'>Status</h1>
             </div>
-            <div className='w-[5%] hidden md:block'>
+            <div className='w-[5%] md:block'>
             <h1 className='text-center'>User </h1>
             </div>
 
@@ -84,9 +82,9 @@ const setOptionsButton=(i)=>{
           <div className='w-[3%]'>
             <h1 className='text-center'>{i+1}</h1>
           </div>
-          <div className='w-[22%] md:w-[22%]'>
+          <div className='w-[40%]'>
             <Link 
-              to={`/view-book-details/${items.book_id}`}
+              to={`/view-book-details/${items.book._id}`}
               className="hover:text-blue-300"
              >{items.book.title}
             
@@ -97,10 +95,10 @@ const setOptionsButton=(i)=>{
 
             </div>
 
-            <div className='md:w-[8%]'>
+            <div className='w-[15%] md:w-[10%]'>
               <h1 className=''>${items.book.price}</h1>
             </div>
-            <div className=''>
+            <div className='w-[20%] md:w-[13%]'>
               <h1 className='font-semibold'> 
                 <button 
                 className='hover:scale-105 transition-all duration-300' 

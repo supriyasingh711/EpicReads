@@ -87,16 +87,16 @@ const deletebook=async()=>{
         </div>
 </>}
 {isLoggedIn===true && role==="admin" && <>
-  <div className='flex md:flex-col gap-5 items-center justify-center'>
+  <div className='flex  items-center justify-center md:flex-col gap-5 '>
     <Link 
     to={`/update-book/${id}`}
-    className='bg-white rounded lg:rounded-full text-4xl lg:text-3xl p-1 '
+    className='bg-white rounded-full text-2xl lg:text-3xl p-1 '
     >
       <FaEdit/>{" "}
-      <span className='ms-4 block lg:hidden'>Edit</span>
+      <span className='ms-4 block lg:hidden'></span>
     
     </Link>
-          <button className='bg-white rounded-full text-2xl p-2 mb-5' onClick={deletebook}><MdOutlineDelete/></button>
+          <button className='bg-white rounded-full text-2xl p-1 md:mb-5' onClick={deletebook}><MdOutlineDelete/></button>
           
         </div>
 </>}

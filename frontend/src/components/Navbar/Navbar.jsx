@@ -15,10 +15,7 @@ const Navbar = () => {
             title:"Books",
             link:"/books"
         },
-        {
-            title:"About Us",
-            link:"/about-us"
-        },
+       
         {
             title:"Cart",
             link:"/cart"
@@ -29,7 +26,7 @@ const Navbar = () => {
         },
         {
             title:"Admin",
-            link:"/profile"
+            link:"/profile/all-orders"
         },
     ]
     const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
@@ -41,7 +38,7 @@ const Navbar = () => {
         links.splice(5,1)
     }
     if(isLoggedIn===true && role==="admin"){
-        links.splice(4,1)
+        links.splice(2,2)
     }
 const [SmallScreenNav,setSmallScreenNav]=useState("hidden")
 

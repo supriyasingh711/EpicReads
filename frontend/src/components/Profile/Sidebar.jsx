@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux"
 import {authActions} from "../../store/auth"
-// import FaArrowRightFromBracket from "react-icons/fa"
+
 const Sidebar = ({data}) => {
   const dispatch=useDispatch()
   const history=useNavigate()

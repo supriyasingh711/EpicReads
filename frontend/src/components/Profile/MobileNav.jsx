@@ -25,14 +25,14 @@ const MobileNav = () => {
   </Link></div>
     )}
      {role==="admin" && (
-      <div className='w-full flex items-center justify-between my-8'>
-      <Link to={"/profile"}
+      <div className='w-full flex items-center justify-center my-8'>
+      <Link to={"/profile/all-orders"}
   className='text-zinc-100 font-semibold w-full py-2 text-center hover:bg-zinc-900 rounded transition-all duration-300'
   >All Orders
   </Link>
   <Link to={"/profile/add-book"}
   className='text-zinc-100 font-semibold w-full py-2 mt-4 text-center hover:bg-zinc-900 rounded transition-all duration-300'
-  >add book
+  >Add Book
   </Link>
   </div>
     )}
