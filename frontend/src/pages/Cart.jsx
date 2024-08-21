@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Loader from '../components/Loader/Loader';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import base_url from '../store/url';
 
 const Cart = () => {
   const navigate=useNavigate()
@@ -46,7 +47,7 @@ useEffect(()=>{
 const PlaceOrder=async()=>{
   try {
     const res=await axios.post(
-      "http://localhost:1000/api/v1/place-order",
+      `${base_url}/api/v1/place-order`,
       {order:Cart},
       {headers}
     )

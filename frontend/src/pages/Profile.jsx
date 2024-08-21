@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom'
 import axios from 'axios'
 import Loader from '../components/Loader/Loader'
 import MobileNav from '../components/Profile/MobileNav'
+import base_url from '../store/url'
 
 const Profile = () => {
   
@@ -14,7 +15,7 @@ const Profile = () => {
   }
   useEffect(()=>{
       const fetch=async()=>{
-          const response=await axios.get("http://localhost:1000/api/v1/get-user-information",{headers})
+          const response=await axios.get(`${base_url}/api/v1/get-user-information`,{headers})
       console.log(response)
       setProfile(response.data)
 

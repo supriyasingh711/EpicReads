@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import base_url from '../store/url'
 
 
 
@@ -27,7 +28,7 @@ const AddBook = () => {
             alert("All fields are required");
            } else{
             const response=await axios.post(
-                "http://localhost:1000/api/v1/add-book",Data,{headers}
+                `${base_url}/api/v1/add-book`,Data,{headers}
             )
             setData({
                 url:"",

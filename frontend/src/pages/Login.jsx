@@ -3,6 +3,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { authActions } from '../store/auth'
 import { useDispatch } from 'react-redux'
+import base_url from '../store/url'
+
+
+
 const Login = () => {
   const [values,setValues]=useState(
     {username:"",password:""}
@@ -18,7 +22,7 @@ const Login = () => {
         if(values.username==="" || values.password===""){
           alert("All fields are Required!")
         }else{
-          const response=await axios.post("http://localhost:1000/api/v1/sign-in",values)
+          const response=await axios.post(`${base_url}/api/v1/sign-in`,values)
           // console.log(response.data)
           dispatch(authActions.login())
           dispatch(authActions.changeRole(response.data.role))

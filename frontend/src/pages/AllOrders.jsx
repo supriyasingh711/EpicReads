@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import {FaCheck} from "react-icons/fa"
 import { IoOpenOutline } from "react-icons/io5";
 import UserDetails from './UserDetails'
+import base_url from '../store/url'
+
 
 
 const AllOrders = () => {
@@ -21,7 +23,7 @@ const AllOrders = () => {
   useEffect(()=>{
     const fetch=async()=>{
 
-      const res=await axios.get("http://localhost:1000/api/v1/get-all-orders",
+      const res=await axios.get(`${base_url}/api/v1/get-all-orders`,
         {headers});
   
         setAllOrders(res.data.data)
@@ -37,7 +39,7 @@ const changeStatus=(e)=>{
 }
 const submitChanges=async(i)=>{
   const id=AllOrders[i]._id;
-  const res=await axios.put(`http://localhost:1000/api/v1/update-order-status/${id}`,Value,{headers})
+  const res=await axios.put(`${base_url}/api/v1/update-order-status/${id}`,Value,{headers})
   alert(res.data.message)
 }
 

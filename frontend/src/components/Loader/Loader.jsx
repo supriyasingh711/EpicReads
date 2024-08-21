@@ -14,7 +14,7 @@ const Loader = () => {
      <div className='w-[80%] h-[50%] bg-white text-zinc-800'>
       <h1>oh!Its taking your precious time! I know its hard, but can you please wait a little more ;) !</h1>
       <h3>Till then, can you solve this riddle:</h3>
-      <p>David's father has three sons: Snap, Crackle and _____?</p>
+      <p>A farmer in California owns a beautiful pear tree. He supplies the fruit to a nearby grocery store. The store owner has called the farmer to see how much fruit is available for him to purchase. The farmer knows that the main trunk has 24 branches. Each branch has exactly 12 boughs and each bough has exactly 6 twigs. Since each twig bears one piece of fruit, how many plums will the farmer be able to deliver?</p>
      </div>
 </div>
 

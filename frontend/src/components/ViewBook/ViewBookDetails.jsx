@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -8,6 +7,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { FaEdit } from 'react-icons/fa';
 import {MdOutlineDelete} from "react-icons/md"
 import { useSelector } from 'react-redux';
+import base_url from '../../store/url';
 
 
 const ViewBookDetails = () => {
@@ -23,7 +23,7 @@ const ViewBookDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:1000/api/v1/get-book-by-id/${id}`);
+        const response = await axios.get(`${base_url}/api/v1/get-book-by-id/${id}`);
         setData(response.data.data);
       } catch (err) {
         setError(err.message);
@@ -35,12 +35,7 @@ const ViewBookDetails = () => {
     fetchData();
   }, [id]);
 
-  if (loading) {
-    return 
-    
-    <div className='h-screen bg-zinc-900 flex items-center justify-center'><Loader /></div>
-    
-  }
+ 
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -55,19 +50,19 @@ const ViewBookDetails = () => {
     bookid:id
   };
 const setFavourite=async()=>{
-  const response=await axios.put("http://localhost:1000/api/v1/add-to-favourite",
+  const response=await axios.put(`${base_url}/api/v1/add-to-favourite`,
     {},
     {headers})
    alert(response.data.message)
 }
 const setCart=async()=>{
-  const response=await axios.put("http://localhost:1000/api/v1/add-to-cart",
+  const response=await axios.put(`${base_url}/api/v1/add-to-cart`,
     {},
     {headers})
    alert(response.data.message)
 }
 const deletebook=async()=>{
-  const res=await axios.delete("http://localhost:1000/api/v1/delete-book",{headers})
+  const res=await axios.delete(`${base_url}/api/v1/delete-book`,{headers})
   alert(res.data.message)
   navigate("/books")
 }

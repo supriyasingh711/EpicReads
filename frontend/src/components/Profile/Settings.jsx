@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
 import Loader from '../Loader/Loader';
+import base_url from '../../store/url';
 
 
 const Settings = () => {
@@ -15,14 +16,14 @@ const change=(e)=>{
   setValue({...value,[name]:value})
 }
 const submitAddress=async()=>{
-  const res=await axios.put("http://localhost:1000/api/v1/update-address",value,{headers})
+  const res=await axios.put(`${base_url}/api/v1/update-address`,value,{headers})
   alert(res.data.message)
 }
 useEffect(()=>
 {
   const fetch=async()=>{
     const response=await axios.get(
-      "http://localhost:1000/api/v1/get-user-information",
+      `${base_url}/api/v1/get-user-information`,
       {headers}
     )
     setProfileData(response.data)

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Loader from '../Loader/Loader'
 import {Link} from "react-router-dom"
+import base_url from '../../store/url'
 
 const UserOrderHistory = () => {
 
@@ -14,7 +15,7 @@ const UserOrderHistory = () => {
 
   useEffect(()=>{
     const fetch=async()=>{
-     const res= await axios.get("http://localhost:1000/api/v1/get-all-orders",
+     const res= await axios.get(`${base_url}/api/v1/get-all-orders`,
       
       {headers}
      )
